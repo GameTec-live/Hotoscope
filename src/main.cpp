@@ -37,25 +37,20 @@ void setup() {
   u8g2.drawStr(0,35,"Hello World!");
   u8g2.sendBuffer();
   delay(1000);
-
-  Serial.begin(9600);
 }
 
 void loop() {
   const double celsius = thermistor->readCelsius();
 
-  // send to serial
-  Serial.print("Temperature: ");
-  Serial.print(celsius);
-  Serial.println(" C");
-
   // send to screen
-  u8g2.clearBuffer();
-  u8g2.drawStr(0,35,"Temperature: ");
-  u8g2.setCursor(0, 50);
-  u8g2.print(celsius);
-  u8g2.print(" C");
-  u8g2.sendBuffer();
+  u8g2.firstPage();
+  do
+  {
+    u8g2.drawStr(0,35,"Temp: ");
+    u8g2.setCursor(50, 35);
+    u8g2.print(celsius);
+    u8g2.print("°C");
+  } while ( u8g2.nextPage());
 
   delay(1000);
 }
