@@ -50,13 +50,12 @@ void loop() {
   Serial.println(" C");
 
   // send to screen
-  u8g2.firstPage();
-  do {
-    u8g2.drawStr(0,35,"Temperature: ");
-    u8g2.setCursor(0, 50);
-    u8g2.print(celsius);
-    u8g2.print(" C");
-  } while ( u8g2.nextPage() );
+  u8g2.clearBuffer();
+  u8g2.drawStr(0,35,"Temperature: ");
+  u8g2.setCursor(0, 50);
+  u8g2.print(celsius);
+  u8g2.print(" C");
+  u8g2.sendBuffer();
 
   delay(1000);
 }
