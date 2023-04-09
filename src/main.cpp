@@ -31,6 +31,7 @@ void setup() {
   // Setup Screen
   u8g2.begin();
   u8g2.setFont(u8g2_font_6x13_tf);
+  u8g2.enableUTF8Print();
 
   u8g2.firstPage();
   u8g2.drawStr(0,35,"Hello World!");
@@ -50,11 +51,12 @@ void loop() {
 
   // send to screen
   u8g2.firstPage();
-  u8g2.drawStr(0,35,"Temperature: ");
-  u8g2.setCursor(0, 50);
-  u8g2.print(celsius);
-  u8g2.print(" C");
-  u8g2.sendBuffer();
+  do {
+    u8g2.drawStr(0,35,"Temperature: ");
+    u8g2.setCursor(0, 50);
+    u8g2.print(celsius);
+    u8g2.print(" C");
+  } while ( u8g2.nextPage() );
 
   delay(1000);
 }
