@@ -32,8 +32,6 @@ void setup() {
   u8g2.begin();
   u8g2.setFont(u8g2_font_6x13_tf);
   u8g2.enableUTF8Print();
-
-  u8g2.firstPage();
   u8g2.drawStr(0,35,"Hello World!");
   u8g2.sendBuffer();
   delay(1000);
@@ -41,16 +39,15 @@ void setup() {
 
 void loop() {
   const double celsius = thermistor->readCelsius();
+  static double lastCelsius = 0;
 
-  // send to screen
-  u8g2.firstPage();
-  do
-  {
-    u8g2.drawStr(0,35,"Temp: ");
-    u8g2.setCursor(50, 35);
-    u8g2.print(celsius);
-    u8g2.print("°C");
-  } while ( u8g2.nextPage());
-
-  delay(1000);
+  if(lastCelsius!=celsius) {  
+    // send to screen
+  u8g2.clearBuffer();
+  u8g2.drawStr(0,35,"Temp: ");
+  u8g2.setCursor(50, 35);
+  u8g2.print(celsius);
+  u8g2.print("°C");
+  u8g2.sendBuffer();
+  }
 }
