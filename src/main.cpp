@@ -49,5 +49,6 @@ void loop() {
   u8g2.print(celsius);
   u8g2.print("°C");
   u8g2.sendBuffer();
+  lastCelsius=celsius;
   }
 }
