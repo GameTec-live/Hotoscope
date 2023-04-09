@@ -5,7 +5,7 @@
 #include <NTC_Thermistor.h>
 
 #define SENSOR_PIN             A0
-#define REFERENCE_RESISTANCE   2000
+#define REFERENCE_RESISTANCE   2200
 #define NOMINAL_RESISTANCE     100000
 #define NOMINAL_TEMPERATURE    25
 #define B_VALUE                3950
@@ -30,10 +30,10 @@ void setup() {
 
   // Setup Screen
   u8g2.begin();
-  u8g2.setFont(u8g2_font_6x10_tf);
+  u8g2.setFont(u8g2_font_6x13_tf);
 
   u8g2.firstPage();
-  u8g2.drawStr(0,10,"Hello World!");
+  u8g2.drawStr(0,35,"Hello World!");
   u8g2.sendBuffer();
   delay(1000);
 
@@ -47,6 +47,14 @@ void loop() {
   Serial.print("Temperature: ");
   Serial.print(celsius);
   Serial.println(" C");
+
+  // send to screen
+  u8g2.firstPage();
+  u8g2.drawStr(0,35,"Temperature: ");
+  u8g2.setCursor(0, 50);
+  u8g2.print(celsius);
+  u8g2.print(" C");
+  u8g2.sendBuffer();
 
   delay(1000);
 }
