@@ -58,7 +58,7 @@ int current_menu = 0; // 0 = main menu, 1 = solder, 2 = desolder, 3 = manual, 4 
 int slctd = 0; // selected menu item
 unsigned int millis_before, millis_before_2; // for refresh rate limiting+
 unsigned int millis_now = 0;
-float refresh_rate = 500; // Oled refresh rate in ms
+float refresh_rate = 50; // Oled refresh rate in ms
 float pid_refresh_rate  = 50; // PID refresh rate in ms
 float seconds = 0; // for time keeping
 float pwm_value = 255; // SSR is off with 255
@@ -222,14 +222,12 @@ void loop() {
   }
 
   // OLED Handling
-  menu_handler();
-
-  // time keeping
   millis_now = millis();
   if(millis_now - millis_before > refresh_rate) // refresh rate limiting
   {
     millis_before = millis();   
     seconds = seconds + (refresh_rate/1000); // time keeping
+    menu_handler();
   }
 }
 
@@ -258,10 +256,10 @@ void mainmenu(int selection) {
   // status
   u8g2.drawStr(5,53,"SSR:");
   u8g2.setCursor(30, 53);
-  u8g2.print(pwm_value);
+  u8g2.print((int)pwm_value);
   u8g2.drawStr(65,53,"Temp:");
   u8g2.setCursor(100, 53);
-  u8g2.print(celsius);
+  u8g2.print((int)celsius);
   u8g2.print("°C");
   u8g2.sendBuffer();
 }
@@ -282,9 +280,10 @@ int input_handler() {
   }
   // read in double press of button 2
   if(input == 2) {
-    delay(200);
+    delay(500);
     if(digitalRead(but_2) == LOW) {
       input = 5;
+      tone(buzzer, 1800, 200);
     }
   }
   return input;
@@ -421,10 +420,10 @@ void soldermenu(int selection) {
   // status
   u8g2.drawStr(5,53,"SSR:");
   u8g2.setCursor(30, 53);
-  u8g2.print(pwm_value);
+  u8g2.print((int)pwm_value);
   u8g2.drawStr(65,53,"Temp:");
   u8g2.setCursor(100, 53);
-  u8g2.print(celsius);
+  u8g2.print((int)celsius);
   u8g2.print("°C");
   u8g2.sendBuffer();
 }
@@ -436,10 +435,10 @@ void cooldownmenu(int selection) {
   // status
   u8g2.drawStr(5,53,"SSR:");
   u8g2.setCursor(30, 53);
-  u8g2.print(pwm_value);
+  u8g2.print((int)pwm_value);
   u8g2.drawStr(65,53,"Temp:");
   u8g2.setCursor(100, 53);
-  u8g2.print(celsius);
+  u8g2.print((int)celsius);
   u8g2.print("°C");
   u8g2.sendBuffer();
 }
