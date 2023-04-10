@@ -46,7 +46,6 @@ Connect your arduino to your pc, click on the alien (PlatformIO) in VS Codes sid
 <details>
     <summary>Advanced Configuration</summary>
     Lets say you cant get your hands on a Pro Mini, you can change for what processor PIO builds by modifying lines 11 and 13 in platformio.ini (Refer to PIO Docs for more info)
-
     Lets say you want to customize your Curves. Open main.cpp and look at lines 18 - 28. Those lines are the solder and desolder curves.
     the left side defines at what second it switches to the next stage, the right side is the temperature in °C.
     Adjust those Curvse according to your needs.
