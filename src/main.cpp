@@ -222,12 +222,14 @@ void loop() {
   }
 
   // OLED Handling
+  menu_handler();
+
+  // time keeping
   millis_now = millis();
   if(millis_now - millis_before > refresh_rate) // refresh rate limiting
   {
     millis_before = millis();   
     seconds = seconds + (refresh_rate/1000); // time keeping
-    menu_handler();
   }
 }
 
