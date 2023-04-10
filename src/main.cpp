@@ -331,7 +331,7 @@ void menu_handler() {
       slctd++;
     }
     if (current_menu == 3) {
-      setpoint = setpoint + 5;
+      setpoint = setpoint - 5;
     }
     break;
   case 4:
@@ -340,7 +340,7 @@ void menu_handler() {
       slctd--;
     }
     if (current_menu == 3) {
-      setpoint = setpoint - 5;
+      setpoint = setpoint + 5;
     }
     break;
   case 5:
