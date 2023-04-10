@@ -43,12 +43,12 @@ void loop() {
 
   if(lastCelsius!=celsius) {  
     // send to screen
-  u8g2.clearBuffer();
-  u8g2.drawStr(0,35,"Temp: ");
-  u8g2.setCursor(50, 35);
-  u8g2.print(celsius);
-  u8g2.print("°C");
-  u8g2.sendBuffer();
-  lastCelsius=celsius;
+    u8g2.clearBuffer();
+    u8g2.drawStr(0,35,"Temp: ");
+    u8g2.setCursor(50, 35);
+    u8g2.print(celsius);
+    u8g2.print("°C");
+    u8g2.sendBuffer();
+    lastCelsius=celsius;
   }
 }
