@@ -177,7 +177,7 @@ void setup() {
   u8g2.sendBuffer();
   delay(1000);
   tone(buzzer, 1800, 200); // Happy startup beep
-  //celsius = thermistor->readCelsius();
+  celsius = thermistor->readCelsius();
 }
 
 void loop() {
