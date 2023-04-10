@@ -253,6 +253,12 @@ void mainmenu(int selection) {
   else {
     u8g2.drawStr(5,32,"Manual");
   }
+  if (selection == 3) {
+    u8g2.drawStr(5,43,"Cooldown <-");
+  }
+  else {
+    u8g2.drawStr(5,43,"Cooldown");
+  }
   // status
   u8g2.drawStr(5,53,"SSR:");
   u8g2.setCursor(30, 53);
@@ -313,6 +319,10 @@ void menu_handler() {
       case 2:
         // Manual
         current_menu = 3;
+        break;
+      case 3:
+        // Cooldown
+        current_menu = 4;
         break;
       default:
         break;
