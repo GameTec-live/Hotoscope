@@ -153,10 +153,6 @@ void setup() {
     B_VALUE
   );
 
-  // serial hello world
-  Serial.begin(9600);
-  Serial.println("Hello World!");
-
   // Setup Buttons
   pinMode(but_1, INPUT_PULLUP);
   pinMode(but_2, INPUT_PULLUP);
