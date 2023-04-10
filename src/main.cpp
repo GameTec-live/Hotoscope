@@ -176,7 +176,7 @@ void setup() {
   u8g2.enableUTF8Print();
 
   // Startup Screen
-  u8g2.clearBuffer();
+  //u8g2.clearBuffer();
   //u8g2.drawXBMP(0,0,128,64,bitmap_gaa4pj);
   u8g2.drawStr(32,26,"Hotoscope");
   u8g2.sendBuffer();
