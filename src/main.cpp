@@ -58,7 +58,7 @@ int current_menu = 0; // 0 = main menu, 1 = solder, 2 = desolder, 3 = manual, 4 
 int slctd = 0; // selected menu item
 unsigned int millis_before, millis_before_2; // for refresh rate limiting+
 unsigned int millis_now = 0;
-float refresh_rate = 50; // Oled refresh rate in ms
+float refresh_rate = 60; // Oled refresh rate in ms
 float pid_refresh_rate  = 50; // PID refresh rate in ms
 float seconds = 0; // for time keeping
 float pwm_value = 255; // SSR is off with 255
