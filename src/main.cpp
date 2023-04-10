@@ -10,7 +10,7 @@
 #define NOMINAL_TEMPERATURE    25
 #define B_VALUE                3950
 Thermistor* thermistor;
-static double celsius = thermistor->readCelsius();
+static double celsius = 0;
 
 // Temperature Curves
 #define SOLDER_CURVE_LENGTH 4
@@ -74,7 +74,6 @@ void cooldownmenu(int selection);
 void soldermenu(int selection);
 
 // logo
-/*
 #define GAA4PJ_BMPWIDTH  128
 const unsigned char bitmap_gaa4pj[] PROGMEM = {
   0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
@@ -141,7 +140,7 @@ const unsigned char bitmap_gaa4pj[] PROGMEM = {
   0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
   0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
   0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF
-};*/
+};
 
 void setup() {
   // Setup Thermistor
@@ -172,12 +171,13 @@ void setup() {
   u8g2.enableUTF8Print();
 
   // Startup Screen
-  //u8g2.clearBuffer();
-  //u8g2.drawXBMP(0,0,128,64,bitmap_gaa4pj);
-  u8g2.drawStr(32,26,"Hotoscope");
+  u8g2.clearBuffer();
+  u8g2.drawXBMP(0,0,128,64,bitmap_gaa4pj);
+  //u8g2.drawStr(32,26,"Hotoscope");
   u8g2.sendBuffer();
   delay(1000);
   tone(buzzer, 1800, 200); // Happy startup beep
+  celsius = thermistor->readCelsius();
 }
 
 void loop() {
