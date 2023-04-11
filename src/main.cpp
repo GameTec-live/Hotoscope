@@ -103,7 +103,7 @@ void setup() {
 
   // Setup Screen
   u8g2.begin();
-  u8g2.setFont(u8g2_font_6x13_tf);
+  u8g2.setFont(u8g2_font_6x13_tr);
   u8g2.enableUTF8Print();
 
   // Startup Screen
@@ -210,7 +210,7 @@ void mainmenu(int selection) {
   u8g2.drawStr(65,53,"Temp:");
   u8g2.setCursor(100, 53);
   u8g2.print((int)celsius);
-  u8g2.print("°C");
+  u8g2.print("C");
   u8g2.sendBuffer();
 }
 
@@ -354,7 +354,7 @@ void soldermenu(int selection) {
   u8g2.drawStr(5,21,"Current");
   u8g2.setCursor(50, 21);
   u8g2.print(celsius);
-  u8g2.print("°C");
+  u8g2.print("C");
   u8g2.drawStr(5,32,"Seconds");
   u8g2.setCursor(50, 32);
   u8g2.print(seconds);
@@ -367,7 +367,7 @@ void soldermenu(int selection) {
   u8g2.drawStr(65,53,"Temp:");
   u8g2.setCursor(100, 53);
   u8g2.print((int)celsius);
-  u8g2.print("°C");
+  u8g2.print("C");
   u8g2.sendBuffer();
 }
 
@@ -382,6 +382,6 @@ void cooldownmenu(int selection) {
   u8g2.drawStr(65,53,"Temp:");
   u8g2.setCursor(100, 53);
   u8g2.print((int)celsius);
-  u8g2.print("°C");
+  u8g2.print("C");
   u8g2.sendBuffer();
 }
