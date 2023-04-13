@@ -71,12 +71,12 @@ sTune tuner = sTune();
 QuickPID myPID(&celsius, &PID_Output, &setpoint);
 
 // Functions
-void mainmenu(int selection);
+void mainmenu();
 int input_handler();
 void menu_handler();
 void PID();
-void cooldownmenu(int selection);
-void soldermenu(int selection);
+void cooldownmenu();
+void soldermenu();
 
 void setup() {
   // Setup Thermistor
@@ -175,102 +175,77 @@ void loop() {
   }
 }
 
-void mainmenu(int selection) {
+void mainmenu() {
   u8g2.clearBuffer();
-  if (selection == 0) {
-    u8g2.drawStr(5,10,"Solder <-");
-  }
-  else {
-    u8g2.drawStr(5,10,"Solder");
-  }
+  //Solder
+  u8g2.setCursor(5,10);
+  u8g2.print(F("Solder"));
+  if (slctd == 0) u8g2.print(F(" <-"));
   
-  if (selection == 1) {
-    u8g2.drawStr(5,21,"Desolder <-");
-  }
-  else {
-    u8g2.drawStr(5,21,"Desolder");
-  }
+  //Desolder
+  u8g2.setCursor(5,21);
+  u8g2.print(F("Desolder"));
+  if (slctd == 1) u8g2.print(F(" <-"));
+  
+  //Manual
+  u8g2.setCursor(5,32);
+  u8g2.print(F("Manual"));
+  if (slctd == 2) u8g2.print(F(" <-"));
 
-  if (selection == 2) {
-    u8g2.drawStr(5,32,"Manual <-");
-  }
-  else {
-    u8g2.drawStr(5,32,"Manual");
-  }
-  if (selection == 3) {
-    u8g2.drawStr(5,43,"Cooldown <-");
-  }
-  else {
-    u8g2.drawStr(5,43,"Cooldown");
-  }
+  //Chillax
+  u8g2.setCursor(5,43);
+  u8g2.print(F("Cooldown"));
+  if (slctd == 3) u8g2.print(F(" <-"));
+
   // status
-  u8g2.drawStr(5,53,"SSR:");
-  u8g2.setCursor(30, 53);
-  u8g2.print((int)pwm_value);
-  u8g2.drawStr(65,53,"Temp:");
-  u8g2.setCursor(100, 53);
-  u8g2.print((int)celsius);
-  u8g2.print("C");
+  add_status_to_display_framebuffer();
   u8g2.sendBuffer();
 }
 
 int input_handler() {
-  int input = 0;
-  if(digitalRead(but_1) == LOW) {
-    input = 1;
-  }
+  if(digitalRead(but_1) == LOW) return 1
   if(digitalRead(but_2) == LOW) {
-    input = 2;
-  }
-  if(digitalRead(but_3) == LOW) {
-    input = 3;
-  }
-  if(digitalRead(but_4) == LOW) {
-    input = 4;
-  }
-  // read in double press of button 2
-  if(input == 2) {
     delay(500);
     if(digitalRead(but_2) == LOW) {
-      input = 5;
       tone(buzzer, 1800, 200);
+      return 5;
     }
+    return 2;
   }
-  return input;
+  if(digitalRead(but_3) == LOW) return 3;
+  if(digitalRead(but_4) == LOW) return 4;
+  return 0;
 }
 
 void menu_handler() {
   int inpt = input_handler();
   switch (inpt)
   {
-  case 1:
-    // Solder Cycle shortcut
+  case 1: // Solder Cycle shortcut
     current_menu = 1;
     break;
-  case 2:
-    // select
+  case 2: // Select
     if (current_menu == 0) {
+      /*
       switch (slctd)
       {
-      case 0:
-        // Solder
+      case 0: // Solder
         current_menu = 1;
         break;
-      case 1:
-        // Desolder
+      case 1: // Desolder
         current_menu = 2;
         break;
-      case 2:
-        // Manual
+      case 2: // Manual
         current_menu = 3;
         break;
-      case 3:
-        // Cooldown
+      case 3: // Cooldown
         current_menu = 4;
         break;
       default:
         break;
       }
+      */
+      current_menu = slctd+1;
       tone(buzzer, 1800, 200); // confirm beep
     }
     else 
@@ -279,26 +254,15 @@ void menu_handler() {
       tone(buzzer, 1800, 200); // confirm beep
     }
     break;
-  case 3:
-    // up
-    if (slctd < 2 && current_menu == 0) {
-      slctd++;
-    }
-    if (current_menu == 3) {
-      setpoint = setpoint - 5;
-    }
+  case 3: // up
+    if (slctd < 2 && current_menu == 0) slctd++;
+    if (current_menu == 3) setpoint = setpoint - 5;
     break;
-  case 4:
-    // down
-    if (slctd > 0 && current_menu == 0) {
-      slctd--;
-    }
-    if (current_menu == 3) {
-      setpoint = setpoint + 5;
-    }
+  case 4: // down
+    if (slctd > 0 && current_menu == 0) slctd--;
+    if (current_menu == 3) setpoint = setpoint + 5;
     break;
-  case 5:
-    // Manual Heating shortcut
+  case 5: // Manual Heating shortcut
     current_menu = 3;
     tone(buzzer, 1800, 200); // confirm beep
     break;
@@ -308,25 +272,20 @@ void menu_handler() {
 
   switch (current_menu)
   {
-  case 0:
-    // Main Menu
-    mainmenu(slctd);
+  case 0: // Main Menu
+    mainmenu();
     break;
-  case 1:
-    // Solder
-    soldermenu(slctd);
+  case 1: // Solder
+    soldermenu();
     break;
-  case 2:
-    // Desolder
-    soldermenu(slctd);
+  case 2: // Desolder
+    soldermenu();
     break;
-  case 3:
-    // Manual
-    soldermenu(slctd);
+  case 3: // Manual
+    soldermenu();
     break;
-  case 4:
-    // Cooldown
-    cooldownmenu(slctd);
+  case 4: // Cooldown
+    cooldownmenu();
     break;
   default:
     break;
@@ -346,42 +305,44 @@ void PID()
   analogWrite(SSR,pwm_value); //We change the Duty Cycle applied to the SSR
 }
 
-void soldermenu(int selection) {
+void soldermenu() {
   u8g2.clearBuffer();
-  u8g2.drawStr(5,10,"Target");
+  u8g2.setCursor(5,10);
+  u8g2.print(F("Target"));
   u8g2.setCursor(50, 10);
   u8g2.print(setpoint);
-  u8g2.drawStr(5,21,"Current");
+  u8g2.setCursor(5,21);
+  u8g2.print(F("Current"));
   u8g2.setCursor(50, 21);
   u8g2.print(celsius);
   u8g2.print("C");
-  u8g2.drawStr(5,32,"Seconds");
+  u8g2.setCursor(5,32);
+  u8g2.print(F("Seconds"));
   u8g2.setCursor(50, 32);
   u8g2.print(seconds);
   u8g2.print("s");
 
-  // status
-  u8g2.drawStr(5,53,"SSR:");
-  u8g2.setCursor(30, 53);
-  u8g2.print((int)pwm_value);
-  u8g2.drawStr(65,53,"Temp:");
-  u8g2.setCursor(100, 53);
-  u8g2.print((int)celsius);
-  u8g2.print("C");
+  add_status_to_display_framebuffer();
   u8g2.sendBuffer();
 }
 
-void cooldownmenu(int selection) {
+void cooldownmenu() {
   u8g2.clearBuffer();
-  u8g2.drawStr(28,26,"Cooling down");
+  u8g2.setCursor(28,26);
+  u8g2.print(F("Cooling down"));
 
-  // status
-  u8g2.drawStr(5,53,"SSR:");
+  add_status_to_display_framebuffer();
+  u8g2.sendBuffer();
+}
+
+void add_status_to_display_framebuffer(){
+  u8g2.setCursor(5,53);
+  u8g2.print(F("SSR:"));
   u8g2.setCursor(30, 53);
   u8g2.print((int)pwm_value);
-  u8g2.drawStr(65,53,"Temp:");
+  u8g2.setCursor(65,53);
+  u8g2.print(F("Temp:"));
   u8g2.setCursor(100, 53);
   u8g2.print((int)celsius);
   u8g2.print("C");
-  u8g2.sendBuffer();
 }
