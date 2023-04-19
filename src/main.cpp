@@ -77,6 +77,7 @@ void menu_handler();
 void PID();
 void cooldownmenu();
 void soldermenu();
+void add_status_to_display_framebuffer();
 
 void setup() {
   // Setup Thermistor
@@ -203,7 +204,7 @@ void mainmenu() {
 }
 
 int input_handler() {
-  if(digitalRead(but_1) == LOW) return 1
+  if(digitalRead(but_1) == LOW) return 1;
   if(digitalRead(but_2) == LOW) {
     delay(500);
     if(digitalRead(but_2) == LOW) {
