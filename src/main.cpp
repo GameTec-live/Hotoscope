@@ -95,6 +95,10 @@ void setup() {
   pinMode(but_3, INPUT_PULLUP);
   pinMode(but_4, INPUT_PULLUP);
 
+  // Serial Debug
+  Serial.begin(9600);
+  Serial.println("Hi");
+
   // Setup SSR
   pinMode(SSR, OUTPUT);
   digitalWrite(SSR, HIGH); // SSR off
