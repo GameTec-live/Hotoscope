@@ -41,14 +41,14 @@ float Kd = 0.06;
 float PID_Output = 0;
 
 // Buttons
-#define but_1 D3 // (top left - Solder Cycle shortcut)
-#define but_2 D4 // (bottom left - Manual Heating shortcut / select)
-#define but_3 D6 // (top right - up)
-#define but_4 D0 // (bottom right - down)
+#define but_1 0 // (top left - Solder Cycle shortcut)
+#define but_2 2 // (bottom left - Manual Heating shortcut / select)
+#define but_3 13 // (top right - up)
+#define but_4 8 // (bottom right - down)
 
 // other
-#define SSR D5
-#define buzzer D4
+#define SSR 14
+#define buzzer 12
 
 // Screen
 #include <Wire.h>
