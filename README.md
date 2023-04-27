@@ -15,7 +15,8 @@ It Features 2 Defineable curves for Soldering and Desoldering, it also supports 
     * [VS Code](https://code.visualstudio.com/)
     * [PlatformIO](https://platformio.org/install/ide?install=vscode)
 * Hardware:
-    * [Arduino pro micro 328p pro mini or Clone (5V)](https://aliexpress.com/item/4000321145570.html?pdp_npi=2%40dis%21GBP%21%EF%BF%A1%202.26%21%EF%BF%A1%200.41%21%21%21%21%21%40211b613916811404141335671ec512%2112000022144389278%21btf&_t=pvid%3Ad535f032-a574-4d4b-9636-502fa7b18a96&afTraceInfo=4000321145570__pc__pcBridgePPC__xxxxxx__1681140414&spm=a2g0o.ppclist.product.mainProduct&gatewayAdapt=glo2deu)
+    * [D1mini]
+     https://www.aliexpress.com/item/1005004281296544.html?pdp_npi=2%40dis%21GBP%21%EF%BF%A1%202.68%21%EF%BF%A1%201.72%21%21%21%21%21%40211b813b16826152959361434ec5ad%2112000028614259615%21btf&_t=pvid:d8ff26ae-16b9-448e-90b2-6528580a151d&afTraceInfo=1005004281296544__pc__pcBridgePPC__xxxxxx__1682615296&spm=a2g0o.ppclist.product.mainProduct
     * [SSR, 2AMP Rated for mains voltage](aliexpress.com/item/1005004650376762.html?pdp_npi=2%40dis%21GBP%21￡%200.98%21￡%200.69%21%21%21%21%21%40211b613916811404841866479ec512%2112000032063843810%21btf&_t=pvid:782a5978-c6d1-453b-b5dd-098ef49f97f2&afTraceInfo=1005004650376762__pc__pcBridgePPC__xxxxxx__1681140484&spm=a2g0o.ppclist.product.mainProduct)
     * [Mains to 5V PSU](https://www.ebay.co.uk/itm/255861034090?chn=ps&norover=1&mkevt=1&mkrid=710-134428-41853-0&mkcid=2&mkscid=101&itemid=255861034090&targetid=1404115578893&device=c&mktype=pla&googleloc=9045382&poi=&campaignid=17218284410&mkgroupid=142217514411&rlsatarget=pla-1404115578893&abcId=9300867&merchantid=507156551&gclid=CjwKCAjw586hBhBrEiwAQYEnHa10j7ie6Lr-P5FX5cmvnE6lMhkyvXqVWfJETd_cgqhWmba2id9gyhoC67oQAvD_BwE)
     * [Termistor, b3950](https://www.ebay.co.uk/itm/191094757881?var=490279055890)
